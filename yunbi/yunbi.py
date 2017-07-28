@@ -81,9 +81,9 @@ class Yunbi():
     def get_deposits(self, **kwargs):
         '''
         Get your deposits history.
-        :param currency:
-        :param limit: Set result limit
-        :param state:
+        :param currency: (optional)
+        :param limit: (optional) Set result limit
+        :param state: (optional)
         :return: :class:`dict`
         '''
         return self.__private_request('GET', 'deposits', kwargs)
@@ -102,10 +102,10 @@ class Yunbi():
         '''
         Get your orders, results is paginated.
         :param market: Unique market id
-        :param state: Filter order by state
-        :param limit: Limit the number of returned orders
-        :param page: Specify the page of paginated results
-        :param order_by: If set, returned orders will be sorted in specific order
+        :param state: (optional) Filter order by state
+        :param limit: (optional) Limit the number of returned orders
+        :param page: (optional) Specify the page of paginated results
+        :param order_by: (optional) If set, returned orders will be sorted in specific order
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -117,8 +117,8 @@ class Yunbi():
         :param market: Unique market id
         :param side: Either 'sell' or 'buy'
         :param volume: The amount user want to sell/buy
-        :param price: Price for each unit
-        :param ord_type: Type of order, either 'limit' or 'market'
+        :param price: (optional) Price for each unit
+        :param ord_type: (optional) Type of order, either 'limit' or 'market'
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -141,7 +141,7 @@ class Yunbi():
     def post_orders_clear(self, **kwargs):
         '''
         Cancel all my orders.
-        :param side: If present, only sell orders (asks) or buy orders (bids) will be canncelled
+        :param side: (optional) If present, only sell orders (asks) or buy orders (bids) will be canncelled
         :return: :class:`dict`
         '''
         return self.__private_request('POST', 'orders/clear', kwargs)
@@ -160,8 +160,8 @@ class Yunbi():
         '''
         Get the order book of specified market.
         :param market: Unique market id
-        :param asks_limit: Limit the number of returned sell orders
-        :param bids_limit: Limit the number of returned buy orders
+        :param asks_limit: (optional) Limit the number of returned sell orders
+        :param bids_limit: (optional) Limit the number of returned buy orders
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -171,7 +171,7 @@ class Yunbi():
         '''
         Get depth or specified market. Both asks and bids are sorted from highest price to lowest.
         :param market: Unique market id
-        :param limit: Limit the number of returned price levels
+        :param limit: (optional) Limit the number of returned price levels
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -181,11 +181,11 @@ class Yunbi():
         '''
         Get recent trades on market, each trade is included only once.
         :param market: Unique market id
-        :param limit: Limit the number of returned trades
-        :param timestamp: An integer represents the seconds elapsed since Unix epoch
-        :param from: Trade id
-        :param to: Trade id
-        :param order_by: If set, returned trades will be sorted in specific order
+        :param limit: (optional) Limit the number of returned trades
+        :param timestamp: (optional) An integer represents the seconds elapsed since Unix epoch
+        :param from: (optional) Trade id
+        :param to: (optional) Trade id
+        :param order_by: (optional) If set, returned trades will be sorted in specific order
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -195,11 +195,11 @@ class Yunbi():
         '''
         Get your executed trades. Trades are sorted in reverse creation order.
         :param market: Unique market id
-        :param limit: Limit the number of returned trades
-        :param timestamp: An integer represents the seconds elapsed since Unix epoch
-        :param from: Trade id
-        :param to: Trade id
-        :param order_by: If set, returned trades will be sorted in specific order
+        :param limit: (optional) Limit the number of returned trades
+        :param timestamp: (optional) An integer represents the seconds elapsed since Unix epoch
+        :param from: (optional) Trade id
+        :param to: (optional) Trade id
+        :param order_by: (optional) If set, returned trades will be sorted in specific order
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -216,9 +216,9 @@ class Yunbi():
         '''
         Get OHLC(k line) of specific market.
         :param market: Unique market id
-        :param limit: Limit the number of returned data points
-        :param period: Time period of K line
-        :param timestamp: An integer represents the seconds elapsed since Unix epoch
+        :param limit: (optional) Limit the number of returned data points
+        :param period: (optional) Time period of K line
+        :param timestamp: (optional) An integer represents the seconds elapsed since Unix epoch
         :return: :class:`dict`
         '''
         kwargs['market'] = market
@@ -249,9 +249,9 @@ class Yunbi():
         Get K data with pending trades, which are the trades not included in K data yet, because there's delay between trade generated and processed by K data generator.
         :param market: Unique market id
         :param trade_id: The trade id of the first trade you received
-        :param limit: Limit the number of returned data points
-        :param period: Time period of K line
-        :param timestamp: An integer represents the seconds elapsed since Unix epoch
+        :param limit: (optional) Limit the number of returned data points
+        :param period: (optional) Time period of K line
+        :param timestamp: (optional) An integer represents the seconds elapsed since Unix epoch
         :return: :class:`dict`
         '''
         kwargs['market'] = market
