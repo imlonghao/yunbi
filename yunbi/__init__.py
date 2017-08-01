@@ -1,1 +1,1 @@
-from yunbi import yunbi
+from .yunbi import Yunbi
