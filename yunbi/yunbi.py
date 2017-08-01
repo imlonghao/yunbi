@@ -11,11 +11,11 @@ BASE_URL = 'https://yunbi.com/api/v2/'
 class Yunbi():
     def __init__(self, access_key=None, secret_key=None):
         if access_key == None and secret_key == None:
-            self.auth = False
+            self.__auth = False
         else:
-            self.auth = True
-            self.access_key = access_key
-            self.secret_key = secret_key
+            self.__auth = True
+            self.__access_key = access_key
+            self.__secret_key = secret_key
 
     def __hmac_sha256(self, key, msg):
         hash_obj = hmac.new(key=key, msg=msg, digestmod=sha256)
@@ -25,7 +25,7 @@ class Yunbi():
         message = '%s|/api/v2/%s.json|' % (method, url)
         for i in sorted(params.items()):
             message += '%s=%s&' % (i[0], i[1])
-        return self.__hmac_sha256(self.secret_key.encode(), message[:-1].encode())
+        return self.__hmac_sha256(self.__secret_key.encode(), message[:-1].encode())
 
     def __public_request(self, method, url, data=None):
         assert method in ['GET', 'POST'], 'Unknow method %s' % method
@@ -37,9 +37,9 @@ class Yunbi():
 
     def __private_request(self, method, url, data=None):
         assert method in ['GET', 'POST'], 'Unknow method %s' % method
-        assert self.auth == True, 'Private API, access_key and secret_key required'
+        assert self.__auth == True, 'Private API, access_key and secret_key required'
         data = {} if data is None else data
-        data['access_key'] = self.access_key
+        data['access_key'] = self.__access_key
         tonce = int(time.time() * 1000)
         data['tonce'] = tonce
         signature = self.__sign(method, url, data)
