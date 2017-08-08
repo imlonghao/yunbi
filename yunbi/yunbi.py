@@ -183,12 +183,15 @@ class Yunbi():
         :param market: Unique market id
         :param limit: (optional) Limit the number of returned trades
         :param timestamp: (optional) An integer represents the seconds elapsed since Unix epoch
-        :param from: (optional) Trade id
+        :param from_id: (optional) Trade id
         :param to: (optional) Trade id
         :param order_by: (optional) If set, returned trades will be sorted in specific order
         :return: :class:`dict`
         '''
         kwargs['market'] = market
+        if kwargs['from_id'] is not None:
+            kwargs['from'] = kwargs['from_id']
+            kwargs.pop('from_id')
         return self.__public_request('GET', 'trades', kwargs)
 
     def get_trades_my(self, market, **kwargs):
@@ -197,12 +200,15 @@ class Yunbi():
         :param market: Unique market id
         :param limit: (optional) Limit the number of returned trades
         :param timestamp: (optional) An integer represents the seconds elapsed since Unix epoch
-        :param from: (optional) Trade id
+        :param from_id: (optional) Trade id
         :param to: (optional) Trade id
         :param order_by: (optional) If set, returned trades will be sorted in specific order
         :return: :class:`dict`
         '''
         kwargs['market'] = market
+        if kwargs['from_id'] is not None:
+            kwargs['from'] = kwargs['from_id']
+            kwargs.pop('from_id')
         return self.__private_request('GET', 'trades/my', kwargs)
 
     def get_timestamp(self):
