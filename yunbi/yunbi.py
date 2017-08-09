@@ -63,7 +63,7 @@ class Yunbi():
         '''
         return self.__public_request('GET', 'tickers')
 
-    def get_tickets_market(self, market):
+    def get_tickers_market(self, market):
         '''Get ticker of specific market.
 
         :param market: Unique market id
