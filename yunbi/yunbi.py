@@ -82,7 +82,7 @@ class Yunbi():
         '''Get your specific currency info.
 
         :param currency: Unique currency name.
-        :return: :class:`list`
+        :return: :class:`dict`
         '''
         accounts = self.get_members_me()['accounts']
         return list(filter(lambda cur: cur['currency']==currency, accounts))[0]
