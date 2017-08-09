@@ -63,7 +63,7 @@ class Yunbi():
         '''
         return self.__public_request('GET', 'tickers')
 
-    def get_tickets_market(self, market):
+    def get_tickers_market(self, market):
         '''Get ticker of specific market.
 
         :param market: Unique market id
@@ -77,6 +77,15 @@ class Yunbi():
         :return: :class:`dict`
         '''
         return self.__private_request('GET', 'members/me')
+
+    def get_currency_me(self, currency):
+        '''Get your specific currency info.
+
+        :param currency: Unique currency name.
+        :return: :class:`dict`
+        '''
+        accounts = self.get_members_me()['accounts']
+        return list(filter(lambda cur: cur['currency']==currency, accounts))[0]
 
     def get_deposits(self, **kwargs):
         '''Get your deposits history.
