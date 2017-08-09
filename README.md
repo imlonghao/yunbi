@@ -36,7 +36,7 @@ y = Yunbi() # Access to public API
 y.get_tickets_market('ethcny') # Get ETH/CNY market's tickets
 
 y = Yunbi('YOUR API KEY', 'YOUR SECRET KEY') # Access to public and private API
-y.y.get_members_me() # Get your account information
+y.get_members_me() # Get your account information
 ```
 
 ## License
