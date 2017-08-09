@@ -78,6 +78,15 @@ class Yunbi():
         '''
         return self.__private_request('GET', 'members/me')
 
+    def get_currency_me(self, currency):
+        '''Get your currency info.
+
+        :param currency: Unique currency name.
+        :return: :class:`list`
+        '''
+        accounts = self.get_members_me()['accounts']
+        return list(filter(lambda cur: cur['currency']==currency, accounts))
+
     def get_deposits(self, **kwargs):
         '''Get your deposits history.
 

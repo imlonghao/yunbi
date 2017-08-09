@@ -33,7 +33,7 @@ get_trades('ethcny', from_id=123456)
 from yunbi import Yunbi
 
 y = Yunbi() # Access to public API
-y.get_tickers_market('ethcny') # Get ETH/CNY market's tickets
+y.get_tickers_market('ethcny') # Get ETH/CNY market's tickers
 
 y = Yunbi('YOUR API KEY', 'YOUR SECRET KEY') # Access to public and private API
 y.get_members_me() # Get your account information
