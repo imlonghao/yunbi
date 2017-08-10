@@ -9,7 +9,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='yunbi',
-    version='0.2.0',
+    version='0.2.1',
     keywords=('Yunbi'),
     url='https://github.com/imlonghao/yunbi',
     license='MIT License',
