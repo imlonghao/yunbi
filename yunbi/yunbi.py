@@ -9,7 +9,8 @@ BASE_URL = 'https://yunbi.com/api/v2/'
 
 
 class Yunbi():
-    def __init__(self, access_key=None, secret_key=None):
+    def __init__(self, access_key=None, secret_key=None, timeout=5):
+        self.__timeout = timeout
         if access_key == None and secret_key == None:
             self.__auth = False
         else:
@@ -31,9 +32,9 @@ class Yunbi():
         assert method in ['GET', 'POST'], 'Unknow method %s' % method
         data = {} if data is None else data
         if method == 'GET':
-            return requests.get(BASE_URL + url + '.json', data=data).json()
+            return requests.get(BASE_URL + url + '.json', data=data, timeout=self.__timeout).json()
         else:
-            return requests.post(BASE_URL + url + '.json', data=data).json()
+            return requests.post(BASE_URL + url + '.json', data=data, timeout=self.__timeout).json()
 
     def __private_request(self, method, url, data=None):
         assert method in ['GET', 'POST'], 'Unknow method %s' % method
@@ -45,9 +46,9 @@ class Yunbi():
         signature = self.__sign(method, url, data)
         data['signature'] = signature
         if method == 'GET':
-            return requests.get(BASE_URL + url + '.json', data=data).json()
+            return requests.get(BASE_URL + url + '.json', data=data, timeout=self.__timeout).json()
         else:
-            return requests.post(BASE_URL + url + '.json', data=data).json()
+            return requests.post(BASE_URL + url + '.json', data=data, timeout=self.__timeout).json()
 
     def get_markets(self):
         '''Get all available markets.
